@@ -19,7 +19,7 @@ function Home() {
   useEffect(() => {
     const controller = new AbortController();
 
-    fetch('http://127.0.0.1:8000/rest/', { signal: controller.signal })
+    fetch('https://smart-django.onrender.com/rest/', { signal: controller.signal })
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();
