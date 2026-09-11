@@ -8,21 +8,29 @@ function About() {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/rest/${id}/`)
-      .then((res) => {
-        if (!res.ok) throw new Error("Ma'lumot topilmadi")
-        return res.json()
-      })
-      .then((data) => {
-        setCar(data)
-        setLoading(false)
-      })
-      .catch((err) => {
-        console.error(err)
-        setError("Ma'lumot yuklashda xatolik yuz berdi")
-        setLoading(false)
-      })
-  }, [id])
+  const controller = new AbortController();
+
+  fetch(`https://smart-django.onrender.com/rest/rest/${id}/`, {
+    signal: controller.signal,
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error("Ma'lumot topilmadi");
+      return res.json();
+    })
+    .then((data) => {
+      setCar(data);
+      setLoading(false);
+    })
+    .catch((err) => {
+      if (err.name !== 'AbortError') {
+        console.error(err);
+        setError("Ma'lumot yuklashda xatolik yuz berdi");
+        setLoading(false);
+      }
+    });
+
+  return () => controller.abort();
+}, [id]);
 
   if (loading) return <p className="text-center p-[40px] font-bold">Yuklanmoqda...</p>
   if (error) return <p className="text-center p-[40px] text-red-500">{error}</p>

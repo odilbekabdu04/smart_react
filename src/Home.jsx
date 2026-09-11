@@ -47,7 +47,6 @@ const toggleFavorite = (id) => {
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css"
       />
 
-      {/* HEADER - yangi qo'shildi */}
       <div className="flex items-center justify-between mb-[24px]">
         <h1 className="text-[24px] font-bold text-gray-800">Cars</h1>
 
@@ -64,26 +63,24 @@ const toggleFavorite = (id) => {
         </div>
       </div>
 
-      {/* Yuklanmoqda */}
+      
       {loading && (
         <p className="text-center text-gray-500 p-[40px]">Yuklanmoqda...</p>
       )}
 
-      {/* Xatolik */}
       {error && (
         <p className="text-center text-red-500 p-[40px]">
           Xatolik: {error}
         </p>
       )}
 
-      {/* Mashinalar yo'q */}
       {!loading && !error && cars.length === 0 && (
         <p className="text-center text-gray-500 p-[40px]">
           Hozircha mashina yo'q.
         </p>
       )}
 
-      {/* Mashinalar ro'yxati */}
+     
       {!loading && !error && cars.length > 0 && (
         <div className="flex flex-wrap gap-[20px]">
           {cars.map((item) => (
@@ -91,7 +88,7 @@ const toggleFavorite = (id) => {
               key={item.id || item.nomi}
               className="w-[280px] bg-white border border-gray-200 rounded-[16px]"
             >
-              {/* rasm qismi */}
+             
               <div className="relative w-[280px] h-[190px] bg-gray-100">
                 <Link to={`/car/${item.id}`}>
                   <span className="absolute top-[10px] left-[10px] z-10 text-white text-[12px] font-bold px-[8px] py-[4px] rounded-[4px] bg-pink-600">
