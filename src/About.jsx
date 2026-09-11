@@ -32,6 +32,9 @@ function About() {
   return () => controller.abort();
 }, [id]);
 
+  if (loading) return <p className="text-center p-[40px] font-bold">Yuklanmoqda...</p>
+  if (error) return <p className="text-center p-[40px] text-red-500">{error}</p>
+  if (!car) return <p className="text-center p-[40px]">Ma'lumot topilmadi!</p>
 
   return (
     <div className="w-[1200px] my-[0px] mx-auto p-[20px] text-gray-800">

@@ -64,7 +64,22 @@ const toggleFavorite = (id) => {
       </div>
 
       
-      
+      {loading && (
+        <p className="text-center text-gray-500 p-[40px]">Yuklanmoqda...</p>
+      )}
+
+      {error && (
+        <p className="text-center text-red-500 p-[40px]">
+          Xatolik: {error}
+        </p>
+      )}
+
+      {!loading && !error && cars.length === 0 && (
+        <p className="text-center text-gray-500 p-[40px]">
+          Hozircha mashina yo'q.
+        </p>
+      )}
+
      
       {!loading && !error && cars.length > 0 && (
         <div className="flex flex-wrap gap-[20px]">
