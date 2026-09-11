@@ -17,28 +17,28 @@ function Home() {
   };
 
   useEffect(() => {
-    const controller = new AbortController();
+  const controller = new AbortController();
 
-    fetch('https://smart-django.onrender.com/rest/', { signal: controller.signal })
-      .then((res) => {
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return res.json();
-      })
-      .then((data) => setCars(data.results ?? data))
-      .catch((err) => {
-        if (err.name !== 'AbortError') {
-          console.error(err);
-          setError(err.message);
-        }
-      })
-      .finally(() => setLoading(false));
+  fetch('https://smart-django.onrender.com/rest/rest/', { signal: controller.signal })
+    .then((res) => {
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.json();
+    })
+    .then((data) => setCars(data.results ?? data))
+    .catch((err) => {
+      if (err.name !== 'AbortError') {
+        console.error(err);
+        setError(err.message);
+      }
+    })
+    .finally(() => setLoading(false));
 
-    return () => controller.abort();
-  }, []);
+  return () => controller.abort();
+}, []);
 
-  const toggleFavorite = (id) => {
-    setFavorites((prev) => ({ ...prev, [id]: !prev[id] }));
-  };
+const toggleFavorite = (id) => {
+  setFavorites((prev) => ({ ...prev, [id]: !prev[id] }));
+};
 
   return (
     <div className="w-[1200px] mx-auto p-[20px]">
